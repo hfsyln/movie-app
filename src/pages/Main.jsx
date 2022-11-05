@@ -1,12 +1,13 @@
 import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
 
 const image_url = `https://image.tmdb.org/t/p/w500`;
-//const navigate = useNavigate()
+const navigate = useNavigate()
 const [query, setQuery] = useState("")
 const [apiBir, setApiBir] = useState()
 
@@ -45,6 +46,10 @@ const getWants = async () => {
         getWants()
     }
 
+    const handleDetail = () =>{
+        navigate("/details")
+    }
+
   console.log(apiBir)
   console.log(query)
   
@@ -67,10 +72,10 @@ const getWants = async () => {
             </div>
         </nav>
 
-
+        <div className='d-flex flex-wrap gap-3 m-5 mx-auto' style={{width:"80%"}}>
         {apiBir?.map((item, index)=>{ 
             return (
-            <div className="card" key={index} style={{width:"18rem"}}>
+            <div className="card mt-4" key={index} style={{width:"18rem"}} onClick={handleDetail}>
                 <img src={(image_url + item?.poster_path)} className="card-img-top"/>
                 <div className="card-body">
                     <p className="card-text">{item?.original_title}</p>
@@ -79,7 +84,7 @@ const getWants = async () => {
                 <div>{item?.overview}</div>
             </div>)
             
-         })}
+         })}</div>
 
         </div>
   )

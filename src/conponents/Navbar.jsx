@@ -1,14 +1,15 @@
 import React from 'react'
+import { NavLink} from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <div>
          <nav className="navbar bg-primary">
             <div className="container-fluid">
-                <a className="navbar-brand">React Movie App</a>
+                <NavLink to="/" className="navbar-brand">React Movie App</NavLink>
                 <form className="d-flex gap-3" role="search">
-                    <button className="btn btn-outline-light" type="submit">LogIn</button> 
-                    <button className="btn btn-outline-light" type="submit">Register</button>
+                    <NavLink to="/login" className="btn btn-outline-light" type="submit">LogIn</NavLink> 
+                    <NavLink to="/register" className="btn btn-outline-light" type="submit">Register</NavLink>
                 </form>
             </div>
         </nav>

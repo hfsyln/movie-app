@@ -1,7 +1,20 @@
 import React from 'react'
-import { NavLink} from 'react-router-dom'
+import { NavLink, useNavigate} from 'react-router-dom'
+import {signOut} from "firebase/auth"
+import { auth} from '../firebaseConfig';
+
+
 
 const Navbar = () => {
+
+
+const navigate = useNavigate();
+
+const logOut = () => {
+    signOut(auth);
+    navigate("/")
+  };
+
   return (
     <div>
          <nav className="navbar bg-primary">
@@ -10,6 +23,7 @@ const Navbar = () => {
                 <form className="d-flex gap-3" role="search">
                     <NavLink to="/login" className="btn btn-outline-light" type="submit">LogIn</NavLink> 
                     <NavLink to="/register" className="btn btn-outline-light" type="submit">Register</NavLink>
+                    <NavLink to="/" className="btn btn-outline-light" type="submit" onClick={logOut}>logOut</NavLink>
                 </form>
             </div>
         </nav>

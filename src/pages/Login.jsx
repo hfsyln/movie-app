@@ -1,11 +1,14 @@
 import React from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
+import { signInWithEmailAndPassword,} from 'firebase/auth';
+import { auth, signInWithGoogle } from '../firebaseConfig';
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Enve from "../enve.jpg"
+
 
 const Login = () => {
 
+  const navigate = useNavigate();
     
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPass, setLoginPass] = useState("")
@@ -14,11 +17,22 @@ const Login = () => {
     try {
     const user = await signInWithEmailAndPassword(auth, loginEmail, loginPass)
     console.log(user)
+    navigate("/")
     }catch(error){
         console.log(error)
         alert("Geçerli bir giriş yapınız yada kayıt olunuz")
     }
    }
+
+
+const signInGoog = () => {
+  signInWithGoogle()
+  navigate("/")
+}
+ 
+
+
+
   return (
     <div className="card d-flex flex-row mt-1 mx-auto" style={{width: "80%", height:"91vh"}}>
         <img src={Enve} style={{width:"50%"}} />
@@ -32,6 +46,7 @@ const Login = () => {
               <input value={loginPass} type="password" onChange={(e)=> {setLoginPass(e.target.value)}}/>
           </div>
           <button className='m-5' onClick={login}>login</button>
+          <button className='mt-1 mx-5 ' onClick={signInGoog}>Sing In with Google</button>
         </div>
     </div>
 

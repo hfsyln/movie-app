@@ -10,6 +10,8 @@ const Register = () => {
     const [registerPass, setRegisterPass] = useState("")
 
    const register = async () =>{
+    setRegisterEmail("")
+    setRegisterPass("")
     try {
     const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPass)
     console.log(user)

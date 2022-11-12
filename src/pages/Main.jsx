@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userObserver } from '../firebaseConfig';
 
 const Main = () => {
 
@@ -51,10 +52,11 @@ const getWants = async () => {
   console.log(apiBir)
   console.log(query)
   
+ 
   useEffect (() => {
-      getApi()
+   
+    getApi();
   }, [])
-  
 
   
   

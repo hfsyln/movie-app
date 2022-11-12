@@ -1,12 +1,15 @@
 import React from 'react'
-import {Routes, Route, Navigate  } from 'react-router-dom';
+import {Routes, Route, Navigate, BrowserRouter  } from 'react-router-dom';
 import Main from '../pages/Main';
 import Register from '../pages/Register';
 import Login from "../pages/Login";
 import MovieDetail from "../pages/MovieDetail"
+import Navbar from '../conponents/Navbar';
 
 const Router = () => {
   return (
+    <BrowserRouter>
+     <Navbar/>
     <Routes>
       <Route path="/"  element={<Main/>}/>
       <Route path="/login"  element={<Login/>}/>
@@ -14,6 +17,7 @@ const Router = () => {
       <Route path="/details" element={<MovieDetail/>}/>
       <Route path="*" element={<Main/>}/>
     </Routes>
+    </BrowserRouter>
   )
 }
 

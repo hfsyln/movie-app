@@ -3,18 +3,19 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import Register from './pages/Register';
 import AppRouter from "./router/AppRouter"
-import { BrowserRouter} from 'react-router-dom';
+
+import AuthContextProvider from './context/AuthContextProvider';
 
 function App() {
 
 
 
   return (
-
-    <BrowserRouter>
-        <Navbar/>
-        <AppRouter/>
-    </BrowserRouter>
+    <>
+    <AuthContextProvider>
+            <AppRouter/>
+    </AuthContextProvider>
+    </>
   );
 }
 

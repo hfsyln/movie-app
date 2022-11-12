@@ -30,11 +30,15 @@ export const signInWithGoogle = () => {
 
 export const auth = getAuth(app)
 
-export const userObserver = () => {
+//setCurrentUser ı burada yakaladık mesela
+export const userObserver = (setCurrentUser) => {
   //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user);
+      const {email, displayname, photoURL} = user //lazım olacakları aldık
+      setCurrentUser({email, displayname, photoURL})
+      console.log(currentUser)
+      
     } else {
       console.log("user signed out");
     }

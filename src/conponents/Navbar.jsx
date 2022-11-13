@@ -1,22 +1,18 @@
 import React, { useContext } from 'react'
 import { NavLink, useNavigate} from 'react-router-dom'
-import {signOut} from "firebase/auth"
-import { auth} from '../firebaseConfig';
-import Avatar from "../assets/avatar.png"
-import  { AuthContext } from '../context/AuthContextProvider';
+import { logOut} from '../firebaseConfig';
+import { AuthContext } from "../context/AuthContextProvider";
+import avatar from "../assets/avatar.png"
 
 
 
 const Navbar = () => {
 
-   const {currentUser} = useContext(AuthContext) //yakaladım burada aşağıda kulandım
-
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser)
 const navigate = useNavigate();
 
-const logOut = () => {
-    signOut(auth);
-    navigate("/")
-  };
+
 
   return (
     <div>
@@ -25,17 +21,19 @@ const logOut = () => {
                 <NavLink to="/" className="navbar-brand">React Movie App</NavLink>
                 <form className="d-flex gap-3" role="search">
 
-              {currentUser && 
-                <div>
+
+                {currentUser ? (
+                  <>
               <h5 className="mr-2 capitalize">{currentUser?.displayName}</h5>
-              <img src={currentUser?.photoURL || Avatar} className="rounded-full" alt="user"/>
-              <NavLink to="/" className="btn btn-outline-light" type="submit" onClick={logOut}>logOut</NavLink>
-              </div>
-            }
-                
-                    <NavLink to="/register" className="btn btn-outline-light" type="submit">Register</NavLink>
+              <NavLink to="/" className="btn btn-outline-light" type="submit" onClick={() => logOut()}>logOut</NavLink>
+              <img src={currentUser?.photoURL || avatar} style={{ height: 25, width: 25 }}/>
+              
+              </> ) : 
+                  <>
                     <NavLink to="/login" className="btn btn-outline-light" type="submit">LogIn</NavLink> 
-                </form>
+                    <NavLink to="/register" className="btn btn-outline-light" type="submit">Register</NavLink>
+                    
+                    </>} </form>
             </div>
         </nav>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
-import {createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebaseConfig';
+import {createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { auth, register } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,26 +11,33 @@ const Register = () => {
     const [registerEmail, setRegisterEmail] = useState("")
     const [registerPass, setRegisterPass] = useState("")
     const [registerName, setRegisterName] = useState("")
+   
 
+const register = async (e) =>{
+    e.preventDefault();
+      setRegisterEmail("")
+      setRegisterPass("")
+      
+      try {
+      if(registerName && registerPass && registerEmail){
+       
+      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPass)
+      console.log(user)
+       //? kullanıcı profilini güncellemek için kullanılan firebase metodu
+       await updateProfile(auth.currentUser, {
+        displayName: `${registerName}`,
+      });
+      navigate("/");
+      alert("kayıt yapılmıştır")
+      navigate("/")
+      }else{
+        alert("Boş alan bırakmayınız")
+      }
+      }catch(error){
+          console.log(error)
+      }
+     }
 
-    
-   const register = async () =>{
-    setRegisterEmail("")
-    setRegisterPass("")
-    setRegisterName("")
-    try {
-    if(registerName && registerPass && registerEmail){
-    const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPass)
-    console.log(user)
-    alert("kayıt yapılmıştır")
-    navigate("/")
-    }else{
-      alert("Boş alan bırakmayınız")
-    }
-    }catch(error){
-        console.log(error)
-    }
-   }
 
 
   return (

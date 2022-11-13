@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup} from "firebase/auth";
+import {getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from "firebase/auth";
 
 
 
@@ -30,17 +30,24 @@ export const signInWithGoogle = () => {
 
 export const auth = getAuth(app)
 
-//setCurrentUser ı burada yakaladık mesela
+
+
 export const userObserver = (setCurrentUser) => {
   //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      const {email, displayname, photoURL} = user //lazım olacakları aldık
+      const {email, displayname, photoURL} = user
       setCurrentUser({email, displayname, photoURL})
-      console.log(currentUser)
-      
+      console.log(user);
     } else {
       console.log("user signed out");
+      setCurrentUser(false)
     }
   });
 };
+
+export const logOut = () => {
+  signOut(auth);
+ 
+};
+

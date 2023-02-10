@@ -101,12 +101,13 @@ const getVoteClass = (vote)=> {
         {apiBir?.map((item, index)=>{ 
             return (
             <div className="card mt-4" key={index}  style={{width:"18rem"}} onClick={()=> { currentUser &&  navigate("/details", {state : item}) || alert("giriş yapınız yada kayıt olunuz")}}>
-                <img src={(image_url + item?.poster_path)} className="card-img-top"/>
-                <div className="card-body d-flex flex-row gap-1">
+                <img  src={(image_url + item?.poster_path)} className="card-img-top"/>
+                <div className="card-body d-flex flex-row gap-1" style={{justifyContent:"space-between"}}>
                     <p className="card-text">{item?.original_title}</p>
-                    <p className={`tag ${getVoteClass(item?.vote_average)}`}>{item?.vote_average}</p>
+                    <div style={{background:"yellow", width:"2rem" , height:"2rem", textAlign:"center"}}><p className="">{item?.vote_average}</p></div>
+                    
                 </div>
-                <div>{item?.overview}</div>
+                <div className="overview">{item?.overview}</div>
             </div>)
             
          })}</div>

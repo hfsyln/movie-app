@@ -100,7 +100,7 @@ const getVoteClass = (vote)=> {
         <div className='d-flex flex-wrap gap-3 m-5 mx-auto' style={{width:"80%"}}>
         {apiBir?.map((item, index)=>{ 
             return (
-            <div className="card mt-4" key={index}  style={{width:"18rem"}} onClick={()=> { currentUser &&  navigate("/details", {state : item}) || alert("giriş yapınız yada kayıt olunuz")}}>
+            <div className="card mt-4" key={index}  style={{width:"18rem"}} onClick={()=> { currentUser ?  navigate("/details", {state : item}) : alert("giriş yapınız yada kayıt olunuz")}}>
                 <img  src={(image_url + item?.poster_path)} className="card-img-top"/>
                 <div className="card-body d-flex flex-row gap-1" style={{justifyContent:"space-between"}}>
                     <p className="card-text">{item?.original_title}</p>

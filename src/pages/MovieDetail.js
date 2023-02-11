@@ -9,7 +9,7 @@ const MovieDetail = () => {
   
   const [movie, setMovie] = useState()
   const image_url = `https://image.tmdb.org/t/p/w500`;
-  const url = `https://api.themoviedb.org/3/movie/${state?.id}/videos?api_key=1dc131a3cf513873457921d47fc37c3c`
+  const url = `https://api.themoviedb.org/3/movie/${state?.id}/videos?api_key=9f49f32a33b5cb9e428afc724ca782d0`
   //youtube videosu için api url si paylaşılacak yukarıda sende iframe içine koyacan
 
   const getMovie = async() => {

@@ -15,8 +15,8 @@ const [apiBir, setApiBir] = useState()
 const [load, setLoad] =useState(false)
 
 
-const url = `https://api.themoviedb.org/3/discover/movie?api_key=2a72939572bf0f6322fd87c528cc4cdd`
-const url2 = `https://api.themoviedb.org/3/search/movie?api_key=2a72939572bf0f6322fd87c528cc4cdd&query=${query}`
+const url = `https://api.themoviedb.org/3/discover/movie?api_key=d37aa81d99fd5b49201922d61ad5b2fd`
+const url2 = `https://api.themoviedb.org/3/search/movie?api_key=d37aa81d99fd5b49201922d61ad5b2fd&query=${query}`
 
   
 const getApi = async () => {
